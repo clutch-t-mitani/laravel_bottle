@@ -14,16 +14,12 @@ class HomeController extends Controller
     public function index()
     {
         //顧客一覧取得
-        $customers = Customer::select('customers.*')
-        ->where('user_id','=',\Auth::id())
-        ->whereNull('deleted_at')
+        $customers = Customer::IsUserId()
         ->orderBy('created_at','ASC')
         ->get();
 
         //顧客に紐づいてるボトル取得
-        $bottles = CustomerBottle::select('customer_bottles.*')
-        ->where('user_id','=',\Auth::id())
-        ->whereNull('deleted_at')
+        $bottles = CustomerBottle::IsUserId()
         ->orderBy('created_at','ASC')
         ->get();
 

@@ -6,6 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                  <a href="{{ route('create_customer') }}" class="float-right">新規顧客追加はこちら</a>
                   <table class="table table-striped">
                     <thead>
                       <tr>
@@ -18,7 +19,9 @@
                     <tbody>
                     @foreach($customers as $customer)
                       <tr>
-                        <td><a href="">{{ $customer['name'] }}</a></td>
+                        <td>
+                          <a href="/edit/{{ $customer['id'] }}">{{ $customer['name'] }}</a>
+                        </td>
                         <?php 
                           array_key_exists($customer['id'],$customer_bottles)?$bottle_lists= $customer_bottles[$customer['id']] : $bottle_lists= [];
                         ?>
