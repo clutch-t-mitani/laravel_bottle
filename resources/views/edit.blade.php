@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  .wid{
+   width:80%;
+  }
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -47,16 +53,50 @@
                 </thead>
                 <tbody>
                   @foreach($cutomer_bottles as $customer_bottle)
-                  <tr>
-                    <td>{{ $customer_bottle['product_name'] }}</td>
-                    <td>{{ $customer_bottle['bottle_name'] }}</td>
-                    <td>{{ $customer_bottle['amount'] }}</td>
-                    <td>                    
-                      <button type="submit" class="btn btn-primary">更新</button>
-                      <button type="button" class="btn btn-danger">削除</button>
-                    </td>
-                  </tr>
+                    <form action="{{ route('customer_bottle') }}" method="POST">
+                    @csrf
+                      <input type="hidden" name="id" value="{{ $customer_bottle['id'] }}">
+                      <input type="hidden" name="pruductname" value="{{ $customer_bottle['product_name'] }}">
+                    <tr>
+                      <td>{{ $customer_bottle['product_name'] }}</td>
+                      <td><input type="text" name="bottle_name" class="form-control wid" value="{{ $customer_bottle['bottle_name'] }}"></td>
+                      <td><input type="text" name="amount" class="form-control wid" value="{{ $customer_bottle['amount'] }}"></td>
+                      <td>                    
+                        <button type="submit" name="update" class="btn btn-primary">更新</button>
+                        <button type="submit" name="delete" class="btn btn-danger">削除</button>
+                      </td>
+                    </tr>
+                  </form>
                   @endforeach
+                </tbody>
+              </table>
+              <hr>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>ボトル登録</th>
+                    <th>ボトル名</th>
+                    <th>ボトル残量</th>
+                    <th>登録</th>
+                  </tr>
+                </thead>
+                <tbody>                     
+                   <form action="{{ route('register_customer_bottle') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="customer_id" value="{{ $edit_customers[0]['id'] }}">
+                    <tr>
+                      <td>
+                        <select class="form-select" id="" name="product_name">
+                        @foreach ($bottles as $bottle)
+                          <option value="{{ $bottle['product_name'] }}">{{ $bottle['product_name'] }}</option>
+                        @endforeach
+                      </select>
+                      </td>
+                      <td><input type="text" name="bottle_name" class="form-control wid"></td>
+                      <td><input type="text" name="amount" class="form-control wid"></td>
+                      <td><button type="submit" class="btn btn-primary">登録</button></td>
+                    </tr>
+                    </form>
                 </tbody>
               </table>
             </div>
