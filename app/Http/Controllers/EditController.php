@@ -32,7 +32,7 @@ class EditController extends Controller
         //登録ボトル一覧を表示
         $bottles = Bottle::IsUserId()
         ->orderBy('created_at','ASC')
-        ->get();
+        ->get();    
 
         return view('edit',compact('edit_customers','cutomer_bottles','bottles'));
     }
@@ -93,6 +93,30 @@ class EditController extends Controller
         $customer_bottles->customer_id =  $request->customer_id;
         $customer_bottles->save();
         return back();   
+    }
+
+    /**
+     * 登録ボトルの編集⇨DB登録
+     */
+
+    public function register_bottle(Request $request)
+    {
+        $posts = $request->all();
+        $results = explode("\r\n",$posts['product_name']);
+
+        DB::transaction(function() use($results){
+            Bottle::IsUserId()->delete();
+
+            foreach($results as $result){
+                $bottles  = new Bottle();        
+                $bottles->product_name = $result;
+                $bottles->user_id =  \Auth::id();
+                $bottles->save();
+            }
+        });
+
+        return back();  
+
     }
 
 }

@@ -5,6 +5,14 @@
   .wid{
    width:80%;
   }
+
+  .center{
+     width:80%;
+  }
+
+  .left{
+    text-align: left;
+  }
 </style>
 
 <div class="container">
@@ -39,7 +47,7 @@
                   </table>
                   <br>
                   <button type="submit" name="update" class="btn btn-primary">更新</button>
-                  <button type="submit" name="delete" class="btn btn-danger">顧客情報削除</button>
+                  <button type="button" class="btn btn-danger mb-8" data-toggle="modal" data-target="#customer_delete">顧客情報を削除</button>
                 </div>
               </form>
               <table class="table table-striped">
@@ -74,7 +82,7 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>ボトル登録</th>
+                    <th>【新規登録】</th>
                     <th>ボトル名</th>
                     <th>ボトル残量</th>
                     <th>登録</th>
@@ -91,6 +99,7 @@
                           <option value="{{ $bottle['product_name'] }}">{{ $bottle['product_name'] }}</option>
                         @endforeach
                       </select>
+                      <a href="" data-toggle="modal" data-target="#bottle_update">ボトル種類変更</a>
                       </td>
                       <td><input type="text" name="bottle_name" class="form-control wid"></td>
                       <td><input type="text" name="amount" class="form-control wid"></td>
@@ -103,4 +112,54 @@
         </div>
     </div>
 </div>
+
+  <!-- 顧客情報削除 -->
+  <div class="modal fade" id="customer_delete" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4><div class="modal-title" id="myModalLabel">削除確認画面</div></h4>
+              </div>
+              <div class="modal-body">
+                <h5 class="p-3 mb-2 bg-warning text-dark">削除すると元に戻せません。<br>紐づいているボトルも削除されます。</h5>
+                <label>削除しますか？</label>
+              </div>
+              <form action="{{ route('edit_update') }}" method="POST">
+                  @csrf
+                  <div class="modal-footer">
+                      <input type="hidden" name='id'value="{{ $edit_customers[0]['id'] }}" >
+                      <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                      <button type="submit"  name="delete" class="btn btn-danger">削除</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+  <!-- ボトル情報編集 -->
+  <div class="modal fade" id="bottle_update" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4><div class="modal-title" id="myModalLabel">ボトル情報編集</div></h4>
+              </div>
+              <div class="modal-body">
+                <h5 class="p-3 mb-2 bg-warning text-dark">1行ごとにボトル名を入力してください</h5>
+                <form action="{{ route('register_bottle') }}" method="POST">
+                @csrf
+                <div class="center">
+                    <textarea name="product_name" cols="20" rows="10">@foreach($bottles as $bottle){{ $bottle['product_name'].PHP_EOL }}@endforeach</textarea>
+                  <br>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                  <button type="submit" class="btn btn-primary">更新</button>
+                </div>
+              </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
 @endsection
+
+
+

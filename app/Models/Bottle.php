@@ -14,5 +14,6 @@ class Bottle extends Model
     public function scopeIsUserId($query)
     {
         return $query->where('user_id','=',\Auth::id());
+        
     }
 }

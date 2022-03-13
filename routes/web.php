@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::POST('/customer_bottle', 'customer_bottle')->name('customer_bottle');
         //顧客に紐づいてるボトル情報登録⇨DB登録
         Route::POST('/register_customer_bottle', 'register_customer_bottle')->name('register_customer_bottle');
+        //登録ボトル情報更新
+        Route::POST('/register_bottle', 'register_bottle')->name('register_bottle');
     });
 
 
