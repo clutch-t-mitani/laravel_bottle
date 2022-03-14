@@ -29,6 +29,6 @@ class CreateCustomerController extends Controller
         $customers->user_id =  \Auth::id();
         $customers->save();
 
-        return redirect('/');  
+        return redirect('/')->with('flash_message', '登録しました');
     }
 }

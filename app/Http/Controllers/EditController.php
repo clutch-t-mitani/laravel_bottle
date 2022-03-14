@@ -49,12 +49,13 @@ class EditController extends Controller
             $edit_customers->memo = $request->memo;
             $edit_customers->save();
 
-            return back();   
+            return back()->with('flash_message', '更新しました');
+            ;   
         }
 
         if($request->has('delete')){
             Customer::where('id',$request->id)->delete();
-            return redirect('/');  
+            return redirect('/')->with('flash_message', '削除が完了しました');  
         }
 
     }
@@ -70,12 +71,12 @@ class EditController extends Controller
             $edit_customer_bottles->bottle_name = $request->bottle_name;
             $edit_customer_bottles->amount = $request->amount;
             $edit_customer_bottles->save();
-            return back();   
+            return back()->with('flash_message', '更新しました');   
         }
 
         if($request->has('delete')){
             CustomerBottle::where('id',$request->id)->delete();
-            return back();   
+            return back()->with('flash_message', '削除が完了しました');   
         }
     }
 
@@ -92,7 +93,7 @@ class EditController extends Controller
         $customer_bottles->user_id =  \Auth::id();
         $customer_bottles->customer_id =  $request->customer_id;
         $customer_bottles->save();
-        return back();   
+        return back()->with('flash_message', '登録しました');   
     }
 
     /**
@@ -115,7 +116,7 @@ class EditController extends Controller
             }
         });
 
-        return back();  
+        return back()->with('flash_message', '更新しました');  
 
     }
 

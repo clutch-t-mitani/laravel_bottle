@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                顧客情報
+                <a href="{{ route('home') }}">顧客一覧へ戻る</a> 
               </div>
               <form action="{{ route('edit_update') }}" method="POST">
                 @csrf
@@ -48,6 +48,7 @@
                   <br>
                   <button type="submit" name="update" class="btn btn-primary">更新</button>
                   <button type="button" class="btn btn-danger mb-8" data-toggle="modal" data-target="#customer_delete">顧客情報を削除</button>
+
                 </div>
               </form>
               <table class="table table-striped">
