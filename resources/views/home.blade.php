@@ -7,7 +7,8 @@
             <div class="card">
                 <div class="card-body">
                   <a href="{{ route('create_customer') }}" class="float-right">新規顧客追加はこちら</a>
-                  <table class="table table-striped">
+                  <!-- <table class="table table-striped"> -->
+                  <table id="table1" class="table table-bordered">
                     <thead>
                       <tr>
                         <th scope="col">名前</th>
