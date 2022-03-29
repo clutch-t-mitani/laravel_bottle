@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\CustomerBottle;
 use App\Models\Bottle;
+use App\Models\Bill;
 use DB;
 
 class EditController extends Controller
@@ -34,7 +35,15 @@ class EditController extends Controller
         ->orderBy('created_at','ASC')
         ->get();    
 
-        return view('edit',compact('edit_customers','cutomer_bottles','bottles'));
+        //来店記録
+        $latest_bill = Bill::IsUserId()
+        ->where('customer_id','=',$id)
+        ->orderBy('visit_date','ASC')
+        ->get();    
+        // dd($latest_bill);
+
+
+        return view('edit',compact('edit_customers','cutomer_bottles','bottles','latest_bill'));
     }
 
     /**

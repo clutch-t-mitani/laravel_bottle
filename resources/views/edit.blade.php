@@ -13,6 +13,11 @@
   .left{
     text-align: left;
   }
+
+  .customr_button{
+    padding: 10px;
+  }
+
 </style>
 
 <div class="container">
@@ -43,11 +48,14 @@
                     <tr>
                       <th>メモ:</th>
                       <td><textarea name="memo" id="" cols="30" rows="4" class="form-control" placeholder="" value="">{{ $edit_customers[0]['memo'] }}</textarea>
+                      <td class="customr_button">
+                        <br>
+                        <br>
+                        <button type="submit" name="update" class="btn btn-primary">顧客情報更新</button>
+                        <button type="button" class="btn btn-danger mb-8" data-toggle="modal" data-target="#customer_delete">顧客情報を削除</button>
+                      </td>
                     </tr>
                   </table>
-                  <br>
-                  <button type="submit" name="update" class="btn btn-primary">更新</button>
-                  <button type="button" class="btn btn-danger mb-8" data-toggle="modal" data-target="#customer_delete">顧客情報を削除</button>
                 </div>
               </form>
               <table class="table table-striped">
@@ -73,7 +81,7 @@
                     </td>
                     <td><input type="text" name="bottle_name" class="form-control wid"></td>
                     <td><input type="text" name="amount" class="form-control wid"></td>
-                    <td><button type="submit" class="btn btn-success">新規登録</button>
+                    <td><button type="submit" class="btn btn-success">新規登録</button></td>
                     </tr>
                   </form>
                   @foreach($cutomer_bottles as $customer_bottle)
@@ -94,6 +102,32 @@
                   </form>
                 </tbody>
               </table>
+              <hr>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>来店登録</th>
+                    <th>現金会計</th>
+                    <th>カード会計</th>
+                    <th>売掛会計</th>
+                    <th>登録</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <form action="" method="POST">
+                @csrf
+                 <tr>
+                    <td><input type="date" class="form-control" id="" name="visit_date" required></td>
+                    <td><input type="number" name="cash" class="form-control wid" value="0"></td>
+                    <td><input type="number" name="card" class="form-control wid" value="0"></td>
+                    <td><input type="number" name="ar" class="form-control wid" value="0"></td>
+                    <td><button type="submit" class="btn btn-success">新規登録</button></td>
+                  </tr>
+                </form>
+                </tbody>
+              </table>
+
+
             </div>
         </div>
     </div>
