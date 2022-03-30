@@ -23,7 +23,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="  ">
               <div class="card-header">
                 <a href="{{ route('home') }}">顧客一覧へ戻る</a> 
               </div>
@@ -114,13 +114,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                <form action="" method="POST">
+                <form action="{{ route('register_visit') }}" method="POST">
                 @csrf
+                <input type="hidden" name="customer_id" value="{{ $edit_customers[0]['id'] }}">
                  <tr>
-                    <td><input type="date" class="form-control" id="" name="visit_date" required></td>
-                    <td><input type="number" name="cash" class="form-control wid" value="0"></td>
-                    <td><input type="number" name="card" class="form-control wid" value="0"></td>
-                    <td><input type="number" name="ar" class="form-control wid" value="0"></td>
+                    <td><input type="date" class="form-control" name="visit_date" required></td>
+                    <td><input type="number" name="cash" class="form-control wid" value="0" required></td>
+                    <td><input type="number" name="card" class="form-control wid" value="0" required></td>
+                    <td><input type="number" name="ar" class="form-control wid" value="0" required></td>
                     <td><button type="submit" class="btn btn-success">新規登録</button></td>
                   </tr>
                 </form>

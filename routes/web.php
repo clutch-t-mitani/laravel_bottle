@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::POST('/register_customer_bottle', 'register_customer_bottle')->name('register_customer_bottle');
         //登録ボトル情報更新
         Route::POST('/register_bottle', 'register_bottle')->name('register_bottle');
+        //来店履歴登録
+        Route::POST('/register_visit', 'register_visit')->name('register_visit');
     });
 
 
