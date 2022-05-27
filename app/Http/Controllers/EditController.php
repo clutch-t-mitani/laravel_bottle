@@ -59,7 +59,6 @@ class EditController extends Controller
             $edit_customers->save();
 
             return back()->with('flash_message', '更新しました');
-            ;   
         }
 
         if($request->has('delete')){

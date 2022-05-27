@@ -102,33 +102,6 @@
                   </form>
                 </tbody>
               </table>
-              <hr>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>来店登録</th>
-                    <th>現金会計</th>
-                    <th>カード会計</th>
-                    <th>売掛会計</th>
-                    <th>登録</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <form action="{{ route('register_visit') }}" method="POST">
-                @csrf
-                <input type="hidden" name="customer_id" value="{{ $edit_customers[0]['id'] }}">
-                 <tr>
-                    <td><input type="date" class="form-control" name="visit_date" required></td>
-                    <td><input type="number" name="cash" class="form-control wid" value="0" required></td>
-                    <td><input type="number" name="card" class="form-control wid" value="0" required></td>
-                    <td><input type="number" name="ar" class="form-control wid" value="0" required></td>
-                    <td><button type="submit" class="btn btn-success">新規登録</button></td>
-                  </tr>
-                </form>
-                </tbody>
-              </table>
-
-
             </div>
         </div>
     </div>
