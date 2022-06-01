@@ -13,12 +13,6 @@ use App\Http\Controllers\EditController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::controller(HomeController::class)->group (function () {
