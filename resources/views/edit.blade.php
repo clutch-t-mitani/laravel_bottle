@@ -87,19 +87,19 @@
                   @foreach($cutomer_bottles as $customer_bottle)
                   <form action="{{ route('customer_bottle') }}" method="POST">
                   @csrf
-                  <input type="hidden" name="id" value="{{ $customer_bottle['id'] }}">
-                  <input type="hidden" name="pruductname" value="{{ $customer_bottle['product_name'] }}">
-                  <tr>
-                    <td>{{ $customer_bottle['product_name'] }}</td>
-                    <td><input type="text" name="bottle_name" class="form-control wid" value="{{ $customer_bottle['bottle_name'] }}"></td>
-                    <td><input type="text" name="amount" class="form-control wid" value="{{ $customer_bottle['amount'] }}"></td>
-                    <td>                    
-                      <button type="submit" name="update" class="btn btn-primary">更新</button>
-                      <button type="submit" name="delete" class="btn btn-danger">削除</button>
-                    </td>
-                  </tr>
-                  @endforeach
+                    <input type="hidden" name="id" value="{{ $customer_bottle['id'] }}">
+                    <input type="hidden" name="pruductname" value="{{ $customer_bottle['product_name'] }}">
+                    <tr>
+                      <td>{{ $customer_bottle['product_name'] }}</td>
+                      <td><input type="text" name="bottle_name" class="form-control wid" value="{{ $customer_bottle['bottle_name'] }}"></td>
+                      <td><input type="text" name="amount" class="form-control wid" value="{{ $customer_bottle['amount'] }}"></td>
+                      <td>                    
+                        <button type="submit" name="update" class="btn btn-primary">更新</button>
+                        <button type="submit" name="delete" class="btn btn-danger">削除</button>
+                      </td>
+                    </tr>
                   </form>
+                  @endforeach
                 </tbody>
               </table>
             </div>

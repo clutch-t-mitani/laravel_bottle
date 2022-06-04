@@ -125,20 +125,4 @@ class EditController extends Controller
 
         return back()->with('flash_message', '更新しました');  
     }
-
-    /**
-     * 来店履歴の登録⇨DB登録
-     */
-    public function register_visit(Request $request)
-    {
-        $register_bill = new Bill();
-        $register_bill->visit_date = $request->visit_date;
-        $register_bill->cash = $request->cash;
-        $register_bill->card = $request->card;
-        $register_bill->ar = $request->ar;
-        $register_bill->user_id =  \Auth::id();
-        $register_bill->customer_id =  $request->customer_id;
-        $register_bill->save();
-        return back()->with('flash_message', '登録しました');   
-    }
 }
